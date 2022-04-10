@@ -49,11 +49,11 @@ cmake_ninja_workdir = C$:/Users/samar/Coding/Competitive_Programming/cmake-build
 
 build cmake_object_order_depends_target_Competitive_Programming: phony || CMakeFiles/Competitive_Programming.dir
 
-build CMakeFiles/Competitive_Programming.dir/Codeforces/Problems/D/501D.cpp.obj: CXX_COMPILER__Competitive_Programming_Debug C$:/Users/samar/Coding/Competitive_Programming/Codeforces/Problems/D/501D.cpp || cmake_object_order_depends_target_Competitive_Programming
-  DEP_FILE = CMakeFiles\Competitive_Programming.dir\Codeforces\Problems\D\501D.cpp.obj.d
+build CMakeFiles/Competitive_Programming.dir/Codeforces/Problems/E/980Ev2.cpp.obj: CXX_COMPILER__Competitive_Programming_Debug C$:/Users/samar/Coding/Competitive_Programming/Codeforces/Problems/E/980Ev2.cpp || cmake_object_order_depends_target_Competitive_Programming
+  DEP_FILE = CMakeFiles\Competitive_Programming.dir\Codeforces\Problems\E\980Ev2.cpp.obj.d
   FLAGS = -g -std=gnu++14
   OBJECT_DIR = CMakeFiles\Competitive_Programming.dir
-  OBJECT_FILE_DIR = CMakeFiles\Competitive_Programming.dir\Codeforces\Problems\D
+  OBJECT_FILE_DIR = CMakeFiles\Competitive_Programming.dir\Codeforces\Problems\E
 
 
 # =============================================================================
@@ -63,7 +63,7 @@ build CMakeFiles/Competitive_Programming.dir/Codeforces/Problems/D/501D.cpp.obj:
 #############################################
 # Link the executable Competitive_Programming.exe
 
-build Competitive_Programming.exe: CXX_EXECUTABLE_LINKER__Competitive_Programming_Debug CMakeFiles/Competitive_Programming.dir/Codeforces/Problems/D/501D.cpp.obj
+build Competitive_Programming.exe: CXX_EXECUTABLE_LINKER__Competitive_Programming_Debug CMakeFiles/Competitive_Programming.dir/Codeforces/Problems/E/980Ev2.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Competitive_Programming.dir
