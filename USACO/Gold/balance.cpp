@@ -3,12 +3,14 @@ using namespace std;
 
 #define int long long
 
+const int INF = 1e9;
+
 struct node{
     int id;
     int parent;
     vector<int> children;
-    int maxmin = INT32_MIN;
-    int minmax = INT32_MAX;
+    int maxmin = -INF;
+    int minmax = INF;
     int lb;
     int rb;
     node(){
@@ -19,7 +21,7 @@ struct node{
 const int mxN = 1e5;
 vector<node> nodes(mxN);
 int ans = 0;
-int maxL = INT_MIN, minR = INT_MAX;
+int maxL = -INF, minR = INF;
 
 void dfs(int u){
 
@@ -54,6 +56,8 @@ int32_t main(){
         int n;
         cin >> n;
         for (int i = 1; i < n; i++){
+            nodes[i].maxmin = -INF;
+            nodes[i].minmax = INF;
             cin >> nodes[i].parent;
             nodes[i].parent--; //to zero-index
         }
@@ -78,13 +82,12 @@ int32_t main(){
         if (b){
             int mid = (maxL + minR) / 2;
             for (int i = 0; i < n; i++){
-                cout << max(min(mid, nodes[i].rb), nodes[i].lb) << " ";
+                cout << max(min(mid, nodes[i].rb), nodes[i].lb) << "\n "[i < n-1];
             }
-            cout << "\n";
         }
         ans = 0;
-        maxL = INT_MIN;
-        minR = INT_MAX;
+        maxL = -INF;
+        minR = INF;
         nodes = vector<node>(mxN);
     }
 /*
