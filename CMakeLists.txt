@@ -3,4 +3,4 @@ project(Competitive_Programming)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Competitive_Programming USACO/Gold/cowpatibility.cpp)
+add_executable(Competitive_Programming USACO/Gold/sleepy.cpp)
