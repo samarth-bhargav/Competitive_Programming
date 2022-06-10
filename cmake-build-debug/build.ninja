@@ -49,8 +49,8 @@ cmake_ninja_workdir = C$:/Users/samar/Coding/Competitive_Programming/cmake-build
 
 build cmake_object_order_depends_target_Competitive_Programming: phony || CMakeFiles/Competitive_Programming.dir
 
-build CMakeFiles/Competitive_Programming.dir/USACO/Gold/sleepy.cpp.obj: CXX_COMPILER__Competitive_Programming_Debug C$:/Users/samar/Coding/Competitive_Programming/USACO/Gold/sleepy.cpp || cmake_object_order_depends_target_Competitive_Programming
-  DEP_FILE = CMakeFiles\Competitive_Programming.dir\USACO\Gold\sleepy.cpp.obj.d
+build CMakeFiles/Competitive_Programming.dir/USACO/Gold/dishes.cpp.obj: CXX_COMPILER__Competitive_Programming_Debug C$:/Users/samar/Coding/Competitive_Programming/USACO/Gold/dishes.cpp || cmake_object_order_depends_target_Competitive_Programming
+  DEP_FILE = CMakeFiles\Competitive_Programming.dir\USACO\Gold\dishes.cpp.obj.d
   FLAGS = -g -std=gnu++14
   OBJECT_DIR = CMakeFiles\Competitive_Programming.dir
   OBJECT_FILE_DIR = CMakeFiles\Competitive_Programming.dir\USACO\Gold
@@ -63,7 +63,7 @@ build CMakeFiles/Competitive_Programming.dir/USACO/Gold/sleepy.cpp.obj: CXX_COMP
 #############################################
 # Link the executable Competitive_Programming.exe
 
-build Competitive_Programming.exe: CXX_EXECUTABLE_LINKER__Competitive_Programming_Debug CMakeFiles/Competitive_Programming.dir/USACO/Gold/sleepy.cpp.obj
+build Competitive_Programming.exe: CXX_EXECUTABLE_LINKER__Competitive_Programming_Debug CMakeFiles/Competitive_Programming.dir/USACO/Gold/dishes.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Competitive_Programming.dir
