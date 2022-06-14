@@ -30,6 +30,12 @@ int main() {
             dp[i][j+1] = dp[i][j] + dp[i][j+1];
         }
     }
+    for (int i = 0; i < 9; i++){
+        for (int j = 0; j < 9; j++){
+            cerr << dp[i][j] << " ";
+        }
+        cerr << "\n";
+    }
     for (int i = 0; i < 1000; i++){
         for (int j = 0; j < 1000; j++){
             if (dp[i][j] == k){

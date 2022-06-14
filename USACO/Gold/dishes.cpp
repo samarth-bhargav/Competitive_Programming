@@ -3,7 +3,6 @@ using namespace std;
 
 int main(){
     ifstream cin("dishes.in");
-    localtime_s()
     ofstream cout("dishes.out");
     int n;
     cin >> n;
