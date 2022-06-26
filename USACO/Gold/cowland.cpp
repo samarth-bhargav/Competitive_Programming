@@ -63,6 +63,7 @@ struct st{
                 return i2;
             }
             return i1;
+            cerr << "hi\n";
         }
         else{
             return qry(v*2, tl, tm, l, min(r, tm))
