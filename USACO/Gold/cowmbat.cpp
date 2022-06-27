@@ -1,82 +1,85 @@
-//babybeluga
 #include <bits/stdc++.h>
-
 using namespace std;
 
-typedef long long ll;
+const int mxN = 1e5;
+int n, m, k; string s;
+int pref[mxN+1][26], dp[mxN][26];
 
-/*
- * First determine the least cost to transform index i into the letter j (floyd warshall)
- * Then prefix sums this
- * dp array where dp[i][j] represents last k letters of i-letter string as j
- * dpmin array where dpmin[i] represents the min cost to make valid first i letters
- * dp[i][j] = min(prefix[i][j]-prefix[i-k][j]+dpmin[i-k],dp[i-1][j] + cst[i][j])
-*/
-
-const int mxN = 100005;
-const int mxM = 26;
-
-ll dp[mxN][mxM];
-ll dpmin[mxN];
-ll cost[mxM][mxM];
-ll cst[mxN][mxM];
-ll prf[mxN][mxM];
-int n,m,k;
-
-int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-//    freopen("cowmbat.in","r",stdin);
-//    freopen("cowmbat.out","w",stdout);
-    cin >> n >> m >> k;
-    string s; cin >> s;
-    for (int i = 0; i < m; i++){
-        for (int j = 0; j < m; j++){
-            cin >> cost[i][j];
-        }
+int range_to_letter(int a, int b, int l){
+    if (a > b){
+        swap(a,b);
     }
-    int ar[n];
-    for (int i = 0; i < n; i++){
-        ar[i] = s[i] - 'a';
-    }
-    memset(prf,0,sizeof(prf));
-    memset(dp,0x3f,sizeof(dp));
-    memset(dpmin,0x3f,sizeof(dpmin));
-    //floyd warshall
-    for (int i = 0; i < m; i++){
-        //changing pivot
-        for (int j = 0; j < m; j++){
-            for (int p = 0; p < m; p++){
-                cost[j][p] = min(cost[j][p],cost[j][i]+cost[i][p]);
-            }
-        }
-    }
-    for (int i = 0; i < n; i++){
-        for (int j = 0; j < m; j++){
-            cst[i][j] = cost[ar[i]][j];
-        }
-    }
-    //prefix sums
-    for (int i = 0; i < m; i++){
-        prf[0][i] = cst[0][i];
-        for (int j = 1; j < n; j++){
-            prf[j][i] = prf[j-1][i] + cst[j][i];
-        }
-    }
-    for (int i = 0; i < m; i++) {
-        dp[0][i] = cst[0][i];
-        dpmin[0] = min(dpmin[0],dp[0][i]);
-    }
-    //updating dp values
-    for (int i = 1; i < n; i++){
-        for (int j = 0; j < m; j++){
-            if (i-k >= 0){
-                dp[i][j] = min(dp[i][j],prf[i][j]-prf[i-k][j]+dpmin[i-k]);
-            }
-            dp[i][j] = min(dp[i][j],dp[i-1][j]+cst[i][j]);
-            dpmin[i] = min(dpmin[i],dp[i][j]);
-        }
-    }
-    cout << dpmin[n-1] << "\n";
+    return pref[b+1][l] - pref[a][l];
 }
 
+int optimal_letter(int a, int b){
+    int letter = 0, ans = range_to_letter(a,b,0);
+    for (int l = 1; l < n; l++){
+        int temp = range_to_letter(a, b, l);
+        if (range_to_letter(a, b, l) < ans){
+            letter = l;
+            ans = temp;
+        }
+    }
+    return letter;
+}
+
+int main(){
+    ifstream cin("cowmbat.in");
+    ofstream cout("cowmbat.out");
+    cin >> n >> m >> k >> s;
+    int dist[m][m];
+    vector<int> a(n);
+    for (int i = 0; i < n; i++){
+        a[i] = s[i] - 'a';
+    }
+    for (int i = 0; i < m; i++){
+        for (int j = 0; j < m; j++){
+            cin >> dist[i][j];
+        }
+    }
+    //floyd-warshall
+    for (int v2 = 0; v2 < m; v2++){
+        for (int v1 = 0; v1 < m; v1++){
+            for (int v3 = 0; v3 < m; v3++){
+                dist[v1][v3] = min(dist[v1][v3], dist[v1][v2] + dist[v2][v3]);
+            }
+        }
+    }
+    for (int i = 0; i < m; i++){
+        for (int j = 0; j < m; j++){
+            cerr << dist[i][j] << " ";
+        }
+        cerr << endl;
+    }
+    memset(pref, 0, sizeof(pref));
+    for (int l = 0; l < 26; l++){
+        for (int i = 1; i <= n; i++){
+            pref[i][l] = pref[i-1][l] + dist[a[i-1]][l];
+        }
+    }
+    //tests
+//    cerr << "(0,1) to 'b': " << range_to_letter(0, 1, 1) << "\n"; //change (0,1) to 'b'
+//    cerr << "(2,4) to 'c': " << range_to_letter(2, 4, 2) << "\n"; //change (2,4) to 'c'
+//    cerr << "(2,4) optimal letter: " << optimal_letter(2,4) << "\n";
+    //end of tests
+    memset(dp, 0x3f, sizeof(dp));
+    for (int l = 0; l < 26; l++){
+        dp[k-1][l] = range_to_letter(0, k-1, l);
+    }
+    for (int i = k; i < n; i++){
+        for (int l = 0; l < m; l++){
+            dp[i][l] = min(dp[i][l], dp[i-1][l] + dist[a[i]][l]);
+            if (i-k >= k-1){
+                for (int l1 = 0; l1 < m; l1++){
+                    dp[i][l] = min(dp[i][l], dp[i-k][l1] + range_to_letter(i-k+1, i, l));
+                }
+            }
+        }
+    }
+    int ans = 1e9;
+    for (int l = 0; l < 26; l++){
+        ans = min(ans, dp[n-1][l]);
+    }
+    cout << ans << "\n";
+}
