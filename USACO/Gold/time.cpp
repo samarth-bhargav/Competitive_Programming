@@ -1,53 +1,47 @@
-//babybeluga
 #include <bits/stdc++.h>
-
 using namespace std;
 
-typedef long long ll;
+const int INF = 1e9;
+const int mxN = 1001;
+vector<pair<int,int>> edges;
+vector<int> profit(mxN);
+long long dp[mxN][501];
 
-/*
-*/
-
-const int mxN = 1001; //max nodes
-const int mxD = 1001; //max days
-
-vector<int>adj[mxN];
-vector<int>adj_reverse[mxN];
-ll dp[mxD][mxN];
-ll cost[mxN];
-
-int n,m,c;
-
-int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    freopen("time.in","r",stdin);
-    freopen("time.out","w",stdout);
-    cin >> n >> m >> c  ;
+int main(){
+    ifstream cin("time.in");
+    ofstream cout("time.out");
+    int n, m, c;
+    cin >> n >> m >> c;
     for (int i = 0; i < n; i++){
-        cin >> cost[i];
+        cin >> profit[i];
     }
     for (int i = 0; i < m; i++){
-        int a,b;
+        int a, b;
         cin >> a >> b; a--; b--;
-        adj[a].push_back(b);
-        adj_reverse[b].push_back(a);
+        edges.emplace_back(a,b);
     }
-    memset(dp,-1,sizeof(dp));
+    for (int i = 0; i < n; i++){
+        for (int j = 0; j < 501; j++){
+            dp[i][j] = -INF;
+        }
+    }
     dp[0][0] = 0;
-    for (int i = 1; i < mxD; i++){
-        for (int j = 0; j < mxN; j++){
-            for (auto edge : adj_reverse[j]){
-                if (dp[i-1][edge] != -1){
-                    dp[i][j] = max(dp[i][j],dp[i-1][edge] + cost[j]);
-                }
+    int from, to;
+    for (int d = 1; d < 501; d++){
+        for (auto & i : edges){
+            from = i.first;
+            to = i.second;
+            if (dp[from][d-1] == -INF){
+                continue;
+            }
+            else{
+                dp[to][d] = max(dp[to][d], dp[from][d-1] + (profit[to] - (c*d*d - c*(d-1)*(d-1))));
             }
         }
     }
-    ll ans = -1;
-    for (int i = 0; i <= 1000; i++){
-        ans = max(ans,dp[i][0] - (ll)(c*pow(i,2)));
+    long long ans = 0;
+    for (int i = 0; i < 501; i++){
+        ans = max(ans, dp[0][i]);
     }
     cout << ans << "\n";
 }
-
