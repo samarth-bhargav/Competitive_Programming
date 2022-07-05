@@ -1,7 +1,7 @@
 # ninja log v5
 9	2136	6710801435220396	CMakeFiles/Competitive_Programming.dir/Codeforces/Problems/D/501D.cpp.obj	3c736e1421b9170c
 5	1246	6782902698583090	CMakeFiles/Competitive_Programming.dir/USACO/Gold/threesum.cpp.obj	ce4ce67716d19b8e
-1247	1381	6782902699903078	Competitive_Programming.exe	10f3f5b2e4490b51
+1001	1119	6786612770087925	Competitive_Programming.exe	472ba5c2460a6267
 3	718	6725326745083530	CMakeFiles/Competitive_Programming.dir/Codeforces/Problems/E/486E.cpp.obj	753b8b8e9a5f150c
 8	1892	6712355024853846	CMakeFiles/Competitive_Programming.dir/Codeforces/Problems/E/980E.cpp.obj	2d2512d2c57f6e08
 8	2005	6713368943948917	CMakeFiles/Competitive_Programming.dir/Codeforces/Problems/E/980Ev2.cpp.obj	78afaf1d14194d3a
@@ -17,22 +17,10 @@
 4	1383	6768883546414167	CMakeFiles/Competitive_Programming.dir/USACO/Gold/snakes.cpp.obj	c8880da7c559995d
 4	2278	6773401184489273	CMakeFiles/Competitive_Programming.dir/USACO/Gold/walk.cpp.obj	44533b2ce7eff371
 4	1261	6776026052827840	CMakeFiles/Competitive_Programming.dir/USACO/Gold/balance2.cpp.obj	d220f83de32e9937
+3	1001	6786612768901551	CMakeFiles/Competitive_Programming.dir/USACO/Gold/help1.cpp.obj	919d47b99c276661
 3	1841	6780224142395878	CMakeFiles/Competitive_Programming.dir/USACO/Gold/milkvisits.cpp.obj	ddafe573642de702
 7	2047	6780302676039266	CMakeFiles/Competitive_Programming.dir/USACO/Gold/cowmbat.cpp.obj	fc4e2ab98733cbf2
 3	1057	6782080117593471	CMakeFiles/Competitive_Programming.dir/USACO/Gold/time.cpp.obj	56a321e3a3a07c2d
-1	1487	6784969150688757	CMakeFiles/Competitive_Programming.dir/USACO/Gold/boards.cpp.obj	529f15479f7c1e38
-1490	1811	6784969153922670	Competitive_Programming.exe	52e6843ada28f3a2
-4	1365	6784972697745976	CMakeFiles/Competitive_Programming.dir/USACO/Gold/boards.cpp.obj	529f15479f7c1e38
-1365	1560	6784972699675983	Competitive_Programming.exe	52e6843ada28f3a2
-3	1427	6784973978184975	CMakeFiles/Competitive_Programming.dir/USACO/Gold/boards.cpp.obj	529f15479f7c1e38
-1427	1634	6784973980232146	Competitive_Programming.exe	52e6843ada28f3a2
-3	1516	6784976062204201	CMakeFiles/Competitive_Programming.dir/USACO/Gold/boards.cpp.obj	529f15479f7c1e38
-1517	1717	6784976064194606	Competitive_Programming.exe	52e6843ada28f3a2
-3	1336	6784981026679724	CMakeFiles/Competitive_Programming.dir/USACO/Gold/boards.cpp.obj	529f15479f7c1e38
-1337	1505	6784981028349724	Competitive_Programming.exe	52e6843ada28f3a2
-3	1546	6784981788335273	CMakeFiles/Competitive_Programming.dir/USACO/Gold/boards.cpp.obj	529f15479f7c1e38
-1546	1718	6784981790045272	Competitive_Programming.exe	52e6843ada28f3a2
-3	1484	6784985473822083	CMakeFiles/Competitive_Programming.dir/USACO/Gold/boards.cpp.obj	529f15479f7c1e38
-1484	1660	6784985475557642	Competitive_Programming.exe	52e6843ada28f3a2
 4	1529	6784986924403435	CMakeFiles/Competitive_Programming.dir/USACO/Gold/boards.cpp.obj	529f15479f7c1e38
-1530	1728	6784986926393877	Competitive_Programming.exe	52e6843ada28f3a2
+4	1563	6786572878160849	CMakeFiles/Competitive_Programming.dir/USACO/Gold/timeline.cpp.obj	f91e264dcdd7281e
+7	1334	6786611793402569	CMakeFiles/Competitive_Programming.dir/USACO/Gold/help.cpp.obj	5d427a5ff1d1d39
