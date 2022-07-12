@@ -41,48 +41,70 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = C$:/Users/samar/Coding/Competitive_Programming/cmake-build-debug/
 # =============================================================================
-# Object build statements for EXECUTABLE target Competitive_Programming
+# Object build statements for EXECUTABLE target stress_tester
 
 
 #############################################
-# Order-only phony target for Competitive_Programming
+# Order-only phony target for stress_tester
 
-build cmake_object_order_depends_target_Competitive_Programming: phony || CMakeFiles/Competitive_Programming.dir
+build cmake_object_order_depends_target_stress_tester: phony || CMakeFiles/stress_tester.dir
 
-build CMakeFiles/Competitive_Programming.dir/USACO/Gold/help.cpp.obj: CXX_COMPILER__Competitive_Programming_Debug C$:/Users/samar/Coding/Competitive_Programming/USACO/Gold/help.cpp || cmake_object_order_depends_target_Competitive_Programming
-  DEP_FILE = CMakeFiles\Competitive_Programming.dir\USACO\Gold\help.cpp.obj.d
+build CMakeFiles/stress_tester.dir/stress/stress-tester.cpp.obj: CXX_COMPILER__stress_tester_Debug C$:/Users/samar/Coding/Competitive_Programming/stress/stress-tester.cpp || cmake_object_order_depends_target_stress_tester
+  DEP_FILE = CMakeFiles\stress_tester.dir\stress\stress-tester.cpp.obj.d
   FLAGS = -g -std=gnu++14
-  OBJECT_DIR = CMakeFiles\Competitive_Programming.dir
-  OBJECT_FILE_DIR = CMakeFiles\Competitive_Programming.dir\USACO\Gold
+  OBJECT_DIR = CMakeFiles\stress_tester.dir
+  OBJECT_FILE_DIR = CMakeFiles\stress_tester.dir\stress
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target Competitive_Programming
+# Link build statements for EXECUTABLE target stress_tester
 
 
 #############################################
-# Link the executable Competitive_Programming.exe
+# Link the executable stress_tester.exe
 
-build Competitive_Programming.exe: CXX_EXECUTABLE_LINKER__Competitive_Programming_Debug CMakeFiles/Competitive_Programming.dir/USACO/Gold/help.cpp.obj
+build stress_tester.exe: CXX_EXECUTABLE_LINKER__stress_tester_Debug CMakeFiles/stress_tester.dir/stress/stress-tester.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\Competitive_Programming.dir
+  OBJECT_DIR = CMakeFiles\stress_tester.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = Competitive_Programming.exe
-  TARGET_IMPLIB = libCompetitive_Programming.dll.a
-  TARGET_PDB = Competitive_Programming.exe.dbg
+  TARGET_FILE = stress_tester.exe
+  TARGET_IMPLIB = libstress_tester.dll.a
+  TARGET_PDB = stress_tester.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target brute
 
 
 #############################################
-# Utility command for edit_cache
+# Order-only phony target for brute
 
-build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\samar\Coding\Competitive_Programming\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
-  DESC = No interactive CMake dialog available...
-  restat = 1
+build cmake_object_order_depends_target_brute: phony || CMakeFiles/brute.dir
 
-build edit_cache: phony CMakeFiles/edit_cache.util
+build CMakeFiles/brute.dir/stress/brute.cpp.obj: CXX_COMPILER__brute_Debug C$:/Users/samar/Coding/Competitive_Programming/stress/brute.cpp || cmake_object_order_depends_target_brute
+  DEP_FILE = CMakeFiles\brute.dir\stress\brute.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\brute.dir
+  OBJECT_FILE_DIR = CMakeFiles\brute.dir\stress
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target brute
+
+
+#############################################
+# Link the executable brute.exe
+
+build brute.exe: CXX_EXECUTABLE_LINKER__brute_Debug CMakeFiles/brute.dir/stress/brute.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\brute.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = brute.exe
+  TARGET_IMPLIB = libbrute.dll.a
+  TARGET_PDB = brute.exe.dbg
 
 
 #############################################
@@ -97,9 +119,57 @@ build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 # =============================================================================
+# Object build statements for EXECUTABLE target real
+
+
+#############################################
+# Order-only phony target for real
+
+build cmake_object_order_depends_target_real: phony || CMakeFiles/real.dir
+
+build CMakeFiles/real.dir/stress/a.cpp.obj: CXX_COMPILER__real_Debug C$:/Users/samar/Coding/Competitive_Programming/stress/a.cpp || cmake_object_order_depends_target_real
+  DEP_FILE = CMakeFiles\real.dir\stress\a.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\real.dir
+  OBJECT_FILE_DIR = CMakeFiles\real.dir\stress
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target real
+
+
+#############################################
+# Link the executable real.exe
+
+build real.exe: CXX_EXECUTABLE_LINKER__real_Debug CMakeFiles/real.dir/stress/a.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\real.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = real.exe
+  TARGET_IMPLIB = libreal.dll.a
+  TARGET_PDB = real.exe.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\samar\Coding\Competitive_Programming\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build edit_cache: phony CMakeFiles/edit_cache.util
+
+# =============================================================================
 # Target aliases.
 
-build Competitive_Programming: phony Competitive_Programming.exe
+build brute: phony brute.exe
+
+build real: phony real.exe
+
+build stress_tester: phony stress_tester.exe
 
 # =============================================================================
 # Folder targets.
@@ -109,7 +179,7 @@ build Competitive_Programming: phony Competitive_Programming.exe
 #############################################
 # Folder: C:/Users/samar/Coding/Competitive_Programming/cmake-build-debug
 
-build all: phony Competitive_Programming.exe
+build all: phony stress_tester.exe brute.exe real.exe
 
 # =============================================================================
 # Built-in targets

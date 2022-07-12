@@ -15,7 +15,9 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1,
+						2
 					]
 				}
 			],
@@ -30,7 +32,9 @@
 					"name" : "Competitive_Programming",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1,
+						2
 					]
 				}
 			],
@@ -38,9 +42,23 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "Competitive_Programming::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Competitive_Programming-Debug-61a6fa18e0933b063e57.json",
-					"name" : "Competitive_Programming",
+					"id" : "brute::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-brute-Debug-60842dd93fcfc139f6aa.json",
+					"name" : "brute",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "real::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-real-Debug-2dd80ab1f6dc84844481.json",
+					"name" : "real",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "stress_tester::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-stress_tester-Debug-d79ece1d80f9ed0b0ea9.json",
+					"name" : "stress_tester",
 					"projectIndex" : 0
 				}
 			]

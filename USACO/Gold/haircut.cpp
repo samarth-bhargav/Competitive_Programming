@@ -1,83 +1,83 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
-typedef long long ll;
+#define int long long
 
-/*
- * Trying to find number of pairs (x,y) s.t.
-    - x < y
-    - A[x] > A[y]
- * Have BIT for 0 to N that initially has all 0s
- * Start from 0 and find first i s.t. A[i] = 0
- *
- * Find the number of elements to the left of that index and "remove" this index by
- * pushing back into BIT. All those elements to the left are 100% greater than A[i] since
- * we are still at 0 :)
- *
- * Now we go to the second (if it exists) i s.t. A[i] = 0 and since we just take number of elements to
- * left-1 since we don't count 0 (in the future, check this by looking at the query of i in the BIT)
- *
- * Add all the values cumulative from A[i] = 0 and store it in array: ans[0] = (the result)
- * Now we have the number of pairs (x,y) s.t. x < y and A[x] > A[y] for every A[y]
- *
- * When we change all the values above a certain j to j, we are actually just limiting A[y] to be less than j
- * since that's where all of our solutions arise (if A[y] >= j, both A[x] and A[y] are j after the change :D)
- *
- * So in order to find the solution to a particular j, just sum all ans[i] from i = 0 to i = j-1 and we're done :)
-*/
-#define int ll
-
-struct ft{
-    vector<int> bit;
-    int n;
-    ft(int x){
-        n = x;
-        bit = vector<int>(n,0);
+struct st{
+    vector<int> t;
+    vector<int> a;
+    int sz;
+    st(){}
+    st(vector<int> a){
+        this->a = a;
+        this->sz = a.size();
+        t.resize(4*sz);
+        bld(1, 0, sz-1);
     }
-    void upd(int i, int d){
-        for (; i < n; i = i | (i+1)){
-            bit[i] += d;
+    void bld(int v, int tl, int tr){
+        if (tl == tr){
+            t[v] = a[tl];
+            return;
         }
+        int tm = (tl + tr) / 2;
+        bld(v*2, tl, tm);
+        bld(v*2+1, tm+1, tr);
+        t[v] = t[v*2] + t[v*2 + 1];
     }
-    int qry(int r){
-        int ret = 0;
-        for (; r >= 0; r = (r & (r+1)) - 1){
-            ret += bit[r];
+    int qry(int v, int tl, int tr, int l, int r){
+        if (l > r){
+            return 0;
         }
-        return ret;
+        if (l == tl && r == tr){
+            return t[v];
+        }
+        int tm = (tl + tr) / 2;
+        return qry(v*2, tl, tm, l, min(r, tm))
+                + qry(v*2+1, tm+1, tr, max(l, tm+1), r);
+    }
+    int greater_than(int lb){
+        return qry(1, 0, sz-1, lb+1, sz-1);
+    }
+    void upd(int v, int tl, int tr, int pos, int new_val){
+        if (tl == tr){
+            a[pos] = new_val;
+            t[v] = new_val;
+            return;
+        }
+        int tm = (tl + tr) / 2;
+        if (pos <= tm){
+            upd(v*2, tl, tm, pos, new_val);
+        }
+        else{
+            upd(v*2+1, tm+1, tr, pos, new_val);
+        }
+        t[v] = t[v*2] + t[v*2+1];
+    }
+    void insert(int val){
+        a[val]++;
+        upd(1, 0, sz-1, val, a[val]);
     }
 };
 
-int32_t main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    freopen("haircut.in","r",stdin);
-    freopen("haircut.out","w",stdout);
-    int n; cin >> n;
-    vector<int>a(n);
-    for (auto & i : a){
-        cin >> i;
-    }
-    ft b = ft(n+1);
-    map<int,vector<int>>occ;
+int32_t main(){
+    ifstream cin("haircut.in");
+    ofstream cout("haircut.out");
+    int n;
+    cin >> n;
+    vector<int> a(n);
     for (int i = 0; i < n; i++){
-        occ[a[i]].push_back(i);
+        cin >> a[i];
     }
-    vector<int>ans(n+1,0);
-    for (int i = 0; i <= n; i++){
-        for (auto & j : occ[i]){
-            ans[i] += j - b.qry(j-1);
-            b.upd(j,1);
-        }
+    int prefix[n+1];
+    memset(prefix, 0, sizeof(prefix));
+    st oset(vector<int> (n+1, 0));
+    for (int i = 0; i < a.size(); i++){
+        prefix[a[i]] += oset.greater_than(a[i]);
+        oset.insert(a[i]);
     }
-    for (auto & i : ans){
-        cerr << i << "\n";
-    }
-    long long c = 0;
+    int ans = 0;
     for (int i = 0; i < n; i++){
-        cout << c << "\n";
-        c += ans[i];
+        cout << ans << "\n";
+        ans += prefix[i];
     }
 }
-
