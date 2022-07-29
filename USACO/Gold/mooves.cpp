@@ -1,14 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#define int long long
+
 const int mxN = 1e5;
 vector<pair<int,int>> swaps;
 int n, k;
 long long reps, rem, m;
-set<int> visited[mxN], visitedRem[mxN];
+unordered_set<int> visited[mxN], visitedRem[mxN];
 vector<int> adj(mxN), cnt(mxN);
 bool vis[mxN];
-map<int, int> freq;
+unordered_map<int, int> freq;
 
 void dfs(int head, int tail){
     vis[tail] = true;
@@ -43,6 +45,7 @@ void process_if_all(int start){
     cnt[start] = freq.size();
     int curr = adj[start];
     while (curr != start){
+        vis[curr] = true;
         cnt[curr] = freq.size();
         curr = adj[curr];
     }
@@ -66,7 +69,7 @@ void dfs_prep(int start){
     freq.clear();
 }
 
-int main(){
+int32_t main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     cin >> n >> k >> m;

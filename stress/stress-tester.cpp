@@ -26,11 +26,19 @@ int main() {
         ofstream out("in.txt");
 
         {
-            int n = 5;
-            int m = rnd(1, 6);
-            out << n << " " << m << "\n";
-            for (int i = 0; i < m; i++){
-                out << rnd(1, 5) << " " << rnd(1, 5) << "\n";
+            int n = 5, k = rnd(1, 4), m = rnd(1, 10);
+            out << n << " " << k << " " << m << "\n";
+            for (int i = 0; i < k; i++){
+                int x = rnd(1, n);
+                int y = rnd(1, n);
+                if (x == y){
+                    i--;
+                    continue;
+                }
+                if (x > y){
+                    swap(x,y);
+                }
+                out << x << " " << y << "\n";
             }
         }
 
