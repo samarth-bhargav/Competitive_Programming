@@ -1,9 +1,11 @@
 #include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+using namespace __gnu_pbds;
 using namespace std;
 
 const int mxN = 1<<17, M = 998244353;
-int dp[mxN][502];
-long long powers[18][502];
+int dp[mxN][18];
+long long powers[18][1001];
 int rqq[1000][1000];
 
 int main(){
@@ -11,7 +13,7 @@ int main(){
     cin.tie(0);
     for (long long i = 1; i <= 17; i++){
         long long x = 1;
-        for (int p = 0; p < 502; p++){
+        for (int p = 0; p < 1001; p++){
             powers[i][p] = ((x % M) + M) % M;
             x = ((x * i) % M + M) % M;
         }
@@ -35,7 +37,6 @@ int main(){
             rqq[i][j] = rqq[i][j-1]+rqq[j][j];
         }
     }
-    memset(dp, 0, sizeof(dp));
     for (int j = 0; j < n; j++){
         //going from [0,j]
         int q_mark = 0, req = 0;
@@ -62,7 +63,10 @@ int main(){
             if (p2 != n-1){
                 q_outside += rqq[p2+1][n-1];
             }
-            dp[req][q_outside+q_mark]++;
+            for (int k = 1; k <= 17; k++){
+                dp[req][k] += powers[k][q_outside+q_mark];
+                dp[req][k] = (dp[req][k] % M + M) % M;
+            }
 //            cerr << "[" << p1 << ", " << p2 << "]: " << req << " " << q_mark+q_outside << "\n";
             p1--; p2++;
         }
@@ -93,7 +97,10 @@ int main(){
             if (p2 != n-1){
                 q_outside += rqq[p2+1][n-1];
             }
-            dp[req][q_outside+q_mark]++;
+            for (int k = 1; k <= 17; k++){
+                dp[req][k] += powers[k][q_outside+q_mark];
+                dp[req][k] = (dp[req][k] % M + M) % M;
+            }
 //            cerr << "[" << p1 << ", " << p2 << "]: " << req << " " << q_mark+q_outside << "\n";
             p1--; p2++;
         }
@@ -106,8 +113,9 @@ int main(){
     for (int i = 0; i < 17; i++){
         for (int mask = 0; mask < mxN; mask++){
             if (mask & (1 << i)){
-                for (int j = 0; j < 502; j++){
+                for (int j = 1; j <= 17; j++){
                     dp[mask][j] += dp[mask ^ (1 << i)][j];
+                    dp[mask][j] = (dp[mask][j] % M + M) % M;
                 }
             }
         }
@@ -119,12 +127,7 @@ int main(){
         for (int j = 0; j < s.length(); j++){
             x |= (1 << (s[j] - 'a'));
         }
-        long long ans = 0;
-        for (int j = 0; j < 502; j++){
-            ans += (dp[x][j] * powers[s.length()][j]);
-            ans = ((ans % M) + M) % M;
-        }
-        cout << ans << "\n";
+        cout << dp[x][s.length()] << "\n";
     }
 //    cerr << powers[3][256] << "\n";
 }

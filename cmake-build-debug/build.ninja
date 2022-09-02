@@ -49,11 +49,11 @@ cmake_ninja_workdir = C$:/Users/samar/Coding/Competitive_Programming/cmake-build
 
 build cmake_object_order_depends_target_Competitive_Programming: phony || CMakeFiles/Competitive_Programming.dir
 
-build CMakeFiles/Competitive_Programming.dir/USACO/Gold/mooves.cpp.obj: CXX_COMPILER__Competitive_Programming_Debug C$:/Users/samar/Coding/Competitive_Programming/USACO/Gold/mooves.cpp || cmake_object_order_depends_target_Competitive_Programming
-  DEP_FILE = CMakeFiles\Competitive_Programming.dir\USACO\Gold\mooves.cpp.obj.d
+build CMakeFiles/Competitive_Programming.dir/Codeforces/Problems/E/791E.cpp.obj: CXX_COMPILER__Competitive_Programming_Debug C$:/Users/samar/Coding/Competitive_Programming/Codeforces/Problems/E/791E.cpp || cmake_object_order_depends_target_Competitive_Programming
+  DEP_FILE = CMakeFiles\Competitive_Programming.dir\Codeforces\Problems\E\791E.cpp.obj.d
   FLAGS = -g -std=gnu++14
   OBJECT_DIR = CMakeFiles\Competitive_Programming.dir
-  OBJECT_FILE_DIR = CMakeFiles\Competitive_Programming.dir\USACO\Gold
+  OBJECT_FILE_DIR = CMakeFiles\Competitive_Programming.dir\Codeforces\Problems\E
 
 
 # =============================================================================
@@ -63,7 +63,7 @@ build CMakeFiles/Competitive_Programming.dir/USACO/Gold/mooves.cpp.obj: CXX_COMP
 #############################################
 # Link the executable Competitive_Programming.exe
 
-build Competitive_Programming.exe: CXX_EXECUTABLE_LINKER__Competitive_Programming_Debug CMakeFiles/Competitive_Programming.dir/USACO/Gold/mooves.cpp.obj
+build Competitive_Programming.exe: CXX_EXECUTABLE_LINKER__Competitive_Programming_Debug CMakeFiles/Competitive_Programming.dir/Codeforces/Problems/E/791E.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Competitive_Programming.dir
@@ -72,39 +72,6 @@ build Competitive_Programming.exe: CXX_EXECUTABLE_LINKER__Competitive_Programmin
   TARGET_FILE = Competitive_Programming.exe
   TARGET_IMPLIB = libCompetitive_Programming.dll.a
   TARGET_PDB = Competitive_Programming.exe.dbg
-
-# =============================================================================
-# Object build statements for EXECUTABLE target stress_tester
-
-
-#############################################
-# Order-only phony target for stress_tester
-
-build cmake_object_order_depends_target_stress_tester: phony || CMakeFiles/stress_tester.dir
-
-build CMakeFiles/stress_tester.dir/stress/stress-tester.cpp.obj: CXX_COMPILER__stress_tester_Debug C$:/Users/samar/Coding/Competitive_Programming/stress/stress-tester.cpp || cmake_object_order_depends_target_stress_tester
-  DEP_FILE = CMakeFiles\stress_tester.dir\stress\stress-tester.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  OBJECT_DIR = CMakeFiles\stress_tester.dir
-  OBJECT_FILE_DIR = CMakeFiles\stress_tester.dir\stress
-
-
-# =============================================================================
-# Link build statements for EXECUTABLE target stress_tester
-
-
-#############################################
-# Link the executable stress_tester.exe
-
-build stress_tester.exe: CXX_EXECUTABLE_LINKER__stress_tester_Debug CMakeFiles/stress_tester.dir/stress/stress-tester.cpp.obj
-  FLAGS = -g
-  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\stress_tester.dir
-  POST_BUILD = cd .
-  PRE_LINK = cd .
-  TARGET_FILE = stress_tester.exe
-  TARGET_IMPLIB = libstress_tester.dll.a
-  TARGET_PDB = stress_tester.exe.dbg
 
 # =============================================================================
 # Object build statements for EXECUTABLE target brute
@@ -138,6 +105,72 @@ build brute.exe: CXX_EXECUTABLE_LINKER__brute_Debug CMakeFiles/brute.dir/stress/
   TARGET_FILE = brute.exe
   TARGET_IMPLIB = libbrute.dll.a
   TARGET_PDB = brute.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target testing
+
+
+#############################################
+# Order-only phony target for testing
+
+build cmake_object_order_depends_target_testing: phony || CMakeFiles/testing.dir
+
+build CMakeFiles/testing.dir/test.cpp.obj: CXX_COMPILER__testing_Debug C$:/Users/samar/Coding/Competitive_Programming/test.cpp || cmake_object_order_depends_target_testing
+  DEP_FILE = CMakeFiles\testing.dir\test.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\testing.dir
+  OBJECT_FILE_DIR = CMakeFiles\testing.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target testing
+
+
+#############################################
+# Link the executable testing.exe
+
+build testing.exe: CXX_EXECUTABLE_LINKER__testing_Debug CMakeFiles/testing.dir/test.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\testing.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = testing.exe
+  TARGET_IMPLIB = libtesting.dll.a
+  TARGET_PDB = testing.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target stress_tester
+
+
+#############################################
+# Order-only phony target for stress_tester
+
+build cmake_object_order_depends_target_stress_tester: phony || CMakeFiles/stress_tester.dir
+
+build CMakeFiles/stress_tester.dir/stress/stress-tester.cpp.obj: CXX_COMPILER__stress_tester_Debug C$:/Users/samar/Coding/Competitive_Programming/stress/stress-tester.cpp || cmake_object_order_depends_target_stress_tester
+  DEP_FILE = CMakeFiles\stress_tester.dir\stress\stress-tester.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\stress_tester.dir
+  OBJECT_FILE_DIR = CMakeFiles\stress_tester.dir\stress
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target stress_tester
+
+
+#############################################
+# Link the executable stress_tester.exe
+
+build stress_tester.exe: CXX_EXECUTABLE_LINKER__stress_tester_Debug CMakeFiles/stress_tester.dir/stress/stress-tester.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\stress_tester.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = stress_tester.exe
+  TARGET_IMPLIB = libstress_tester.dll.a
+  TARGET_PDB = stress_tester.exe.dbg
 
 
 #############################################
@@ -206,6 +239,8 @@ build real: phony real.exe
 
 build stress_tester: phony stress_tester.exe
 
+build testing: phony testing.exe
+
 # =============================================================================
 # Folder targets.
 
@@ -214,7 +249,7 @@ build stress_tester: phony stress_tester.exe
 #############################################
 # Folder: C:/Users/samar/Coding/Competitive_Programming/cmake-build-debug
 
-build all: phony Competitive_Programming.exe stress_tester.exe brute.exe real.exe
+build all: phony Competitive_Programming.exe brute.exe testing.exe stress_tester.exe real.exe
 
 # =============================================================================
 # Built-in targets

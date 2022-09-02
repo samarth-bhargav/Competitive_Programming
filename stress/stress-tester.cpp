@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#define int long long
+
 int rnd(int l, int r) {
     return l + rand() % (r - l + 1);
 }
@@ -17,7 +19,7 @@ bool equal(string file1, string file2) {
 }
 
 
-int main() {
+int32_t main() {
     srand(time(0));
 
     for (int t = 0;; t++) {
@@ -26,19 +28,27 @@ int main() {
         ofstream out("in.txt");
 
         {
-            int n = 5, k = rnd(1, 4), m = rnd(1, 10);
-            out << n << " " << k << " " << m << "\n";
-            for (int i = 0; i < k; i++){
-                int x = rnd(1, n);
-                int y = rnd(1, n);
-                if (x == y){
-                    i--;
-                    continue;
+            int n = 1000;
+            out << n << "\n";
+            for (int i = 0; i < n; i++){
+//                char c = ('a' + rnd(0,16));
+//                out << (rnd(0,2) ? '?' : c);
+                out << '?';
+            }
+            out << "\n";
+            int q = rnd(10, 15);
+            out << q << "\n";
+            for (int i = 0; i < q; i++){
+                int sz = rnd(1, 17);
+                unordered_set<char> s;
+                for (int j = 0; j <= sz; j++){
+                    char c = ('a' + rnd(0,16));
+                    s.insert(c);
                 }
-                if (x > y){
-                    swap(x,y);
+                for (char c : s){
+                    out << c;
                 }
-                out << x << " " << y << "\n";
+                out << "\n";
             }
         }
 

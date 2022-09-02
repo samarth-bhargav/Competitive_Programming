@@ -1,106 +1,80 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define ll long long
+#define pii pair<int,int>
+#define fi first
+#define se second
+#define pb emplace_back
+#define mk make_pair
+const int mod=998244353;
 
-const int mxN = 1e5;
-vector<pair<int,int>> swaps;
-int n, k;
-long long reps, rem, m;
-set<int> visited[mxN], visitedRem[mxN];
-vector<int> adj(mxN), cnt(mxN);
-bool vis[mxN];
-map<int, int> freq;
-
-void dfs(int head, int tail){
-    vis[tail] = true;
-    for (int loc : visitedRem[head]){
-        freq[loc]++;
-    }
-    cnt[tail] = freq.size();
-    for (int loc : visited[tail]){
-        freq[loc]--;
-        if (freq[loc] <= 0){
-            freq.erase(loc);
-        }
-    }
-    for (int loc : visitedRem[head]){
-        freq[loc]--;
-        if (freq[loc] <= 0){
-            freq.erase(loc);
-        }
-    }
-    if (head != tail){
-        for (int loc : visited[head]){
-            freq[loc]++;
-        }
-    }
-    if (!vis[adj[tail]]){
-        dfs(adj[head], adj[tail]);
-    }
+inline int add(int x,int y)
+{
+    int res=x+y;
+    if(res<0)return res+mod;
+    return res<mod?res:res-mod;
 }
-
-
-void process_if_all(int start){
-    cnt[start] = freq.size();
-    int curr = adj[start];
-    while (curr != start){
-        cnt[curr] = freq.size();
-        curr = adj[curr];
-    }
+inline int mul(int x,int y)
+{
+    return (ll)x*y%mod;
 }
-
-void dfs_prep(int start){
-    int curr = start, tail = start;
-    for (int i = 0; i < reps; i++){
-        for (int loc : visited[curr]){
-            freq[loc]++;
-        }
-        if (adj[curr] == start){
-            //we got all nodes
-            process_if_all(start);
-            freq.clear();
-            return;
-        }
-        curr = adj[curr];
+inline int qpow(int a,int b)
+{
+    int res=1;
+    while(b)
+    {
+        if(b&1)res=mul(res,a);
+        a=mul(a,a),b>>=1;
     }
-    dfs(curr, start);
-    freq.clear();
+    return res;
 }
-
-int main(){
-    ios_base::sync_with_stdio(0);
+int f[1<<17][18];
+inline int lb(int x)
+{
+    return x&-x;
+}
+signed main()
+{
+    ios::sync_with_stdio(0);
     cin.tie(0);
-    cin >> n >> k >> m;
-    reps = m / k; rem = m%k;
-    for (int i = 0; i < k; i++){
-        int a, b;
-        cin >> a >> b; a--; b--;
-        swaps.emplace_back(a,b);
-    }
-    vector<int> line;
-    for (int i = 0; i < n; i++){
-        line.push_back(i);
-        visited[i].insert(i);
-        visitedRem[i].insert(i);
-    }
-    for (int i = 0; i < k; i++){
-        visited[line[swaps[i].first]].insert(swaps[i].second);
-        visited[line[swaps[i].second]].insert(swaps[i].first);
-        if (rem > i){
-            visitedRem[line[swaps[i].first]].insert(swaps[i].second);
-            visitedRem[line[swaps[i].second]].insert(swaps[i].first);
-        }
-        swap(line[swaps[i].first], line[swaps[i].second]);
-    }
-    for (int i = 0; i < n; i++){
-        adj[line[i]] = i;
-    }
-    memset(vis, 0, sizeof(vis));
-    for (int i = 0; i < n; i++){
-        if (!vis[i]){
-            dfs_prep(i);
+    int n;
+    cin>>n;
+    string s;
+    cin>>s;
+    s=" "+s;
+    int tot=0;
+    for(int i=1;i<=n;i++)if(s[i]=='?')tot++;
+    for(int i=1;i<=n;i++)
+    {
+        for(int o=0;o<=1;o++)
+        {
+            int cnt=tot,S=0;
+            for(int l=i,r=i+o;l&&r<=n;l--,r++)
+            {
+                if(s[l]=='?'&&s[r]=='?')cnt-=(l!=r);
+                else
+                {
+                    if(s[l]=='?')S|=1<<s[r]-'a',cnt--;
+                    if(s[r]=='?')S|=1<<s[l]-'a',cnt--;
+                    if(s[l]!='?'&&s[r]!='?')if(s[l]!=s[r])break;
+                }
+                for(int i=1;i<=17;i++)f[S][i]=add(f[S][i],qpow(i,cnt));
+            }
         }
     }
-    for (int i = 0; i < n; i++){
-        cout << cnt[i] << "\n";
+    int stot=1<<17;
+    for(int k=1,b=1;k<=17;k++,b<<=1)
+        for(int S=1;S<stot;S++)
+            if(S&b)for(int i=1;i<=17;i++)f[S][i]=add(f[S][i],f[S^b][i]);
+    int m;
+    cin>>m;
+    for(int i=1;i<=m;i++)
+    {
+        string t;
+        cin>>t;
+        int S=0;
+        for(int j=0;j<t.size();j++)S|=1<<t[j]-'a';
+        cout<<f[S][t.size()]<<"\n";
     }
+    return 0;
 }

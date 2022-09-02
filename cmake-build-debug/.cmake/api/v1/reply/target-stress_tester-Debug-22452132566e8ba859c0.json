@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "real.exe"
+			"path" : "stress_tester.exe"
 		},
 		{
-			"path" : "real.pdb"
+			"path" : "stress_tester.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -27,7 +27,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 12,
+				"line" : 11,
 				"parent" : 0
 			}
 		]
@@ -59,7 +59,7 @@
 			]
 		}
 	],
-	"id" : "real::@6890427a1f51a3e7e1df",
+	"id" : "stress_tester::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -79,8 +79,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "real",
-	"nameOnDisk" : "real.exe",
+	"name" : "stress_tester",
+	"nameOnDisk" : "stress_tester.exe",
 	"paths" : 
 	{
 		"build" : ".",
@@ -101,7 +101,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "stress/a.cpp",
+			"path" : "stress/stress-tester.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

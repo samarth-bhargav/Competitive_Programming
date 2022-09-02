@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "stress_tester.exe"
+			"path" : "brute.exe"
 		},
 		{
-			"path" : "stress_tester.pdb"
+			"path" : "brute.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -27,7 +27,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 10,
+				"line" : 12,
 				"parent" : 0
 			}
 		]
@@ -59,7 +59,7 @@
 			]
 		}
 	],
-	"id" : "stress_tester::@6890427a1f51a3e7e1df",
+	"id" : "brute::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -79,8 +79,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "stress_tester",
-	"nameOnDisk" : "stress_tester.exe",
+	"name" : "brute",
+	"nameOnDisk" : "brute.exe",
 	"paths" : 
 	{
 		"build" : ".",
@@ -101,7 +101,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "stress/stress-tester.cpp",
+			"path" : "stress/brute.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
