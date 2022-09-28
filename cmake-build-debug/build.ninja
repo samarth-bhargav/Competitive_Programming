@@ -49,8 +49,8 @@ cmake_ninja_workdir = C$:/Users/samar/Coding/Competitive_Programming/cmake-build
 
 build cmake_object_order_depends_target_Competitive_Programming: phony || CMakeFiles/Competitive_Programming.dir
 
-build CMakeFiles/Competitive_Programming.dir/Codeforces/Problems/E/791E.cpp.obj: CXX_COMPILER__Competitive_Programming_Debug C$:/Users/samar/Coding/Competitive_Programming/Codeforces/Problems/E/791E.cpp || cmake_object_order_depends_target_Competitive_Programming
-  DEP_FILE = CMakeFiles\Competitive_Programming.dir\Codeforces\Problems\E\791E.cpp.obj.d
+build CMakeFiles/Competitive_Programming.dir/Codeforces/Problems/E/1615E.cpp.obj: CXX_COMPILER__Competitive_Programming_Debug C$:/Users/samar/Coding/Competitive_Programming/Codeforces/Problems/E/1615E.cpp || cmake_object_order_depends_target_Competitive_Programming
+  DEP_FILE = CMakeFiles\Competitive_Programming.dir\Codeforces\Problems\E\1615E.cpp.obj.d
   FLAGS = -g -std=gnu++14
   OBJECT_DIR = CMakeFiles\Competitive_Programming.dir
   OBJECT_FILE_DIR = CMakeFiles\Competitive_Programming.dir\Codeforces\Problems\E
@@ -63,7 +63,7 @@ build CMakeFiles/Competitive_Programming.dir/Codeforces/Problems/E/791E.cpp.obj:
 #############################################
 # Link the executable Competitive_Programming.exe
 
-build Competitive_Programming.exe: CXX_EXECUTABLE_LINKER__Competitive_Programming_Debug CMakeFiles/Competitive_Programming.dir/Codeforces/Problems/E/791E.cpp.obj
+build Competitive_Programming.exe: CXX_EXECUTABLE_LINKER__Competitive_Programming_Debug CMakeFiles/Competitive_Programming.dir/Codeforces/Problems/E/1615E.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Competitive_Programming.dir
@@ -88,6 +88,18 @@ build CMakeFiles/brute.dir/stress/brute.cpp.obj: CXX_COMPILER__brute_Debug C$:/U
   OBJECT_DIR = CMakeFiles\brute.dir
   OBJECT_FILE_DIR = CMakeFiles\brute.dir\stress
 
+build CMakeFiles/brute.dir/Codeforces/Problems/C/814C.cpp.obj: CXX_COMPILER__brute_Debug C$:/Users/samar/Coding/Competitive_Programming/Codeforces/Problems/C/814C.cpp || cmake_object_order_depends_target_brute
+  DEP_FILE = CMakeFiles\brute.dir\Codeforces\Problems\C\814C.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\brute.dir
+  OBJECT_FILE_DIR = CMakeFiles\brute.dir\Codeforces\Problems\C
+
+build CMakeFiles/brute.dir/Codeforces/Problems/D/1680D.cpp.obj: CXX_COMPILER__brute_Debug C$:/Users/samar/Coding/Competitive_Programming/Codeforces/Problems/D/1680D.cpp || cmake_object_order_depends_target_brute
+  DEP_FILE = CMakeFiles\brute.dir\Codeforces\Problems\D\1680D.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\brute.dir
+  OBJECT_FILE_DIR = CMakeFiles\brute.dir\Codeforces\Problems\D
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target brute
@@ -96,7 +108,7 @@ build CMakeFiles/brute.dir/stress/brute.cpp.obj: CXX_COMPILER__brute_Debug C$:/U
 #############################################
 # Link the executable brute.exe
 
-build brute.exe: CXX_EXECUTABLE_LINKER__brute_Debug CMakeFiles/brute.dir/stress/brute.cpp.obj
+build brute.exe: CXX_EXECUTABLE_LINKER__brute_Debug CMakeFiles/brute.dir/stress/brute.cpp.obj CMakeFiles/brute.dir/Codeforces/Problems/C/814C.cpp.obj CMakeFiles/brute.dir/Codeforces/Problems/D/1680D.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\brute.dir

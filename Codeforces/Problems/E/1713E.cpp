@@ -20,6 +20,7 @@ int main(){
         set<int> check;
         stack<int> to_remove;
         set<int> kswap;
+        map<pair<int,int>, int> mp;
         for (int i = 1; i < n; i++){
             check.insert(i);
         }
@@ -34,13 +35,23 @@ int main(){
                 }
                 if (g[bound_t][x_t] > g[x_t][bound_t]){
                     to_remove.push(x);
-                    if (!in_bound){
-                        kswap.insert(x);
+                    if (mp.find({x, bound}) != mp.end()){
+                        if (mp[{x, bound}] > x){
+                            kswap.erase(mp[{x, bound}]);
+                            kswap.insert()
+                        }
                     }
                 }
                 else if (g[bound_t][x_t] < g[x_t][bound_t]){
                     to_remove.push(x);
-                    if (in_bound){
+                    if (mp.find({x, bound}) != mp.end()){
+                        if (mp[{x,bound}] > x){
+                            kswap.erase(mp[{x,bound}]);
+                            kswap.insert(x);
+                        }
+                    }
+                    else{
+                        mp[{bound, x}] = x;
                         kswap.insert(x);
                     }
                 }

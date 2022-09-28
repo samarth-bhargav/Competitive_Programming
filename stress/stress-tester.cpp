@@ -28,25 +28,13 @@ int32_t main() {
         ofstream out("in.txt");
 
         {
-            int n = 1000;
+            int tc = 1;
+            out << tc << "\n";
+            int n = 5;
             out << n << "\n";
             for (int i = 0; i < n; i++){
-//                char c = ('a' + rnd(0,16));
-//                out << (rnd(0,2) ? '?' : c);
-                out << '?';
-            }
-            out << "\n";
-            int q = rnd(10, 15);
-            out << q << "\n";
-            for (int i = 0; i < q; i++){
-                int sz = rnd(1, 17);
-                unordered_set<char> s;
-                for (int j = 0; j <= sz; j++){
-                    char c = ('a' + rnd(0,16));
-                    s.insert(c);
-                }
-                for (char c : s){
-                    out << c;
+                for (int j = 0; j < n; j++){
+                    out << rnd(1, 10) << " ";
                 }
                 out << "\n";
             }
