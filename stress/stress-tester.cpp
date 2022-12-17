@@ -21,23 +21,23 @@ bool equal(string file1, string file2) {
 
 int32_t main() {
     srand(time(0));
-
+    std::random_device rd;
+    std::mt19937 g(rd());
     for (int t = 0;; t++) {
         cout << "testing: " << t << endl;
 
         ofstream out("in.txt");
 
         {
-            int tc = 1;
-            out << tc << "\n";
             int n = 5;
             out << n << "\n";
+            vector<int> a(n);
+            iota(a.begin(), a.end(), 1);
+            shuffle(a.begin(), a.end(), g);
             for (int i = 0; i < n; i++){
-                for (int j = 0; j < n; j++){
-                    out << rnd(1, 10) << " ";
-                }
-                out << "\n";
+                out << a[i] << " ";
             }
+            out << "\n";
         }
 
         out.close();

@@ -1,81 +1,76 @@
 #include <bits/stdc++.h>
-
 using namespace std;
-const int c=2005;
-int n, t[c][c], ki[c];
-int holvan(int a) {
-    return (ki[a] ? ki[a]=holvan(ki[a]) : a);
-}
-void unio(int a, int b) {
-    a=holvan(a), b=holvan(b);
-    if (a!=b) {
-        ki[a]=b;
-    }
-}
-int solve() {
-    cin >> n;
-    for (int i=1; i<=n; i++) {
-        for (int j=1; j<=n; j++) {
-            cin >> t[i][j];
-        }
-    }
-    for (int i=1; i<=n; i++) {
-        for (int j=i+1; j<=n; j++) {
-            int x=t[i][j], y=t[j][i];
-            if (x==y) continue;
-            if (x<y) {
-                if (holvan(i)!=holvan(j+n)) {
-                    unio(i, j);
-                    unio(i+n, j+n);
-                }
-            }
-            if (y<x) {
-                if (holvan(i)!=holvan(j)) {
-                    unio(i, j+n);
-                    unio(i+n, j);
-                }
-            }
-        }
-    }
-    for (int i=1; i<=n; i++) {
-        if (holvan(i)!=holvan(1) && holvan(i+n)!=holvan(1)) {
-            unio(1, i);
-            unio(1+n, i+n);
-        }
-    }
-    for (int i=1; i<=n; i++) {
-        if (holvan(i)==holvan(1)) {
-            for (int j=1; j<=n; j++) {
-                swap(t[i][j], t[j][i]);
-            }
-        }
-    }
 
-    for (int i=1; i<=n; i++) {
-        for (int j=1; j<=n; j++) {
-            cout << t[i][j] << " ";
-        }
-        cout << "\n";
-    }
+template <class T> using V = vector<T>;
 
-    for (int i=1; i<=n; i++) {
-        for (int j=1; j<=n; j++) {
-            t[i][j]=0;
+int main() {
+    cin.tie(0)->sync_with_stdio(0);
+    int N;
+    cin >> N;
+    V<int> P(N);
+    for (auto &t : P) {
+        cin >> t;
+        --t;
+    }
+    V<int> pos(N);
+    for (int i = 0; i < N; ++i)
+        pos[P[i]] = i;
+    V<V<pair<int, char>>> to_ins(N + 1);
+    V<V<int>> to_del(N + 1);
+    { // process "LO"s from lowest to highest, record insertions and deletions
+        stack<int> cur;
+        for (int i = 0; i < N; ++i) {
+            while (!cur.empty() && cur.top() > pos[i]) {
+                to_del.at(i + 1).push_back(cur.top());
+                cur.pop();
+            }
+            cur.push(pos[i]);
+            to_ins.at(i + 1).push_back({pos[i], 'L'});
         }
     }
-    for (int i=1; i<=2*n; i++) {
-        ki[i]=0;
+    { // process "HI"s from highest to lowest, record insertions and deletions
+        stack<int> cur;
+        for (int i = N - 1; i >= 0; --i) {
+            while (!cur.empty() && cur.top() > pos[i]) {
+                to_ins.at(i + 1).push_back({cur.top(), 'H'});
+                cur.pop();
+            }
+            cur.push(pos[i]);
+            to_del.at(i + 1).push_back(pos[i]);
+        }
+        while (!cur.empty()) {
+            to_ins.at(0).push_back({cur.top(), 'H'});
+            cur.pop();
+        }
     }
-    return 0;
-}
-int main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(0);
-    int w;
-    cin >> w;
-    while (w--) {
-        solve();
+    int ans = 0;
+    map<int, char> m; // maps each position to 'H' or 'L'
+    auto hilo = [&](map<int, char>::iterator it,
+                    map<int, char>::iterator next_it) {
+        return it->second == 'H' && next_it->second == 'L';
+    };
+    auto get_dif = [&](map<int, char>::iterator it) {
+        int dif = 0;
+        if (it != begin(m))
+            dif += hilo(prev(it), it);
+        if (next(it) != end(m))
+            dif += hilo(it, next(it));
+        if (it != begin(m) && next(it) != end(m))
+            dif -= hilo(prev(it), next(it));
+        return dif;
+    };
+    for (int i = 0; i <= N; ++i) { // to finish, go from lowest to highest again
+        for (auto &t : to_del.at(i)) {
+            auto it = m.find(t);
+            assert(it != end(m));
+            ans -= get_dif(it);
+            m.erase(it);
+        }
+        for (auto &t : to_ins.at(i)) {
+            auto it = m.insert(t).first;
+            assert(it->second);
+            ans += get_dif(it);
+        }
+        cout << ans << "\n";
     }
-    return 0;
 }
