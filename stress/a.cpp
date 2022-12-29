@@ -1,91 +1,87 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int mxN = 1e5, INF = 1e9;
-map<int, int> loc;
+typedef long long ll;
+#define int ll
+const ll INF = 1e9;
 
-struct st{
-    int sz;
-    vector<set<int>> t;
-    vector<int> a;
-    st(vector<int> a){
-        sz = a.size();
-        t.resize(4*sz);
-        this->a = a;
-        bld(1, 0, sz-1);
-    }
-    void bld(int v, int tl, int tr){
-        if (tl == tr){
-            t[v].insert(a[tl]);
-            return;
+int32_t main(){
+    int t;
+    cin >> t;
+    while (t--){
+        int n; ll x, y;
+        cin >> n >> x >> y;
+        deque<ll> opp(n);
+        for (int i = 0; i < n; i++){
+            cin >> opp[i];
         }
-        int tm = (tl + tr) / 2;
-        bld(v*2, tl, tm);
-        bld(v*2+1, tm+1, tr);
-        for (int elem : t[v*2]){
-            t[v].insert(elem);
-        }
-        for (int elem : t[v*2+1]){
-            t[v].insert(elem);
-        }
-    }
-    int qry_HI(int l, int r, int x){
-        return qry(1, 0, sz-1, l, r, x, 1);
-    }
-    int qry_LO(int l, int r, int x){
-        return qry(1, 0, sz-1, l, r, x, 0);
-    }
-    int qry(int v, int tl, int tr, int l, int r, int x, bool HI){
-        if (l > r){
-            return -INF;
-        }
-        if (l == tl && r == tr){
-            auto it = t[v].lower_bound(x);
-            if (HI){
-                return it == t[v].end() ? -INF : *it;
+        sort(opp.begin(), opp.end());
+        int tot_gain = 0, tot_games = 0;
+        deque<int> aux;
+        for (int i = 0; i < n; i++){
+            if (x == y){
+                break;
+            }
+            tot_games++;
+            if (x >= opp[i]){
+                x++; tot_gain++;
             }
             else{
-                return it == t[v].begin() ? -INF : *prev(it);
+                aux.push_back(opp[i] - i);
+                x--; tot_gain--;
             }
         }
-        int tm = (tl + tr) / 2;
-        int i1 = qry(v*2, tl, tm, l, min(r, tm), x, HI);
-        int i2 = qry(v*2+1, tm+1, tr, max(l, tm+1), r, x, HI);
-        if (i1 == -INF && i2 == -INF){
-            return -INF;
+        if (x == y){
+            cout << tot_games << "\n";
+            continue;
         }
-        if (i1 == -INF ^ i2 == -INF){
-            return (i1 == -INF ? i2 : i1);
+        if (tot_gain <= 0){
+            cout << -1 << "\n";
+            continue;
         }
-        return loc[i1] < loc[i2] ? i2 : i1;
-    }
-};
-
-int main(){
-    ios_base::sync_with_stdio(false);
-    cin.tie(0);
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    for (int i = 0; i < n; i++){
-        cin >> a[i];
-        loc[a[i]] = i;
-    }
-    loc[0] = -INF; loc[-INF] = -INF;
-    st s_tree(a);
-    int curr_ans = 0;
-    cout << curr_ans << "\n";
-    for (int i = 1; i <= n; i++){
-        int location = loc[i];
-        int one, two;
-        if (location == 0){
-            one = 0;
+        sort(aux.begin(), aux.end());
+        while (x < y){
+            int curr_cyc;
+            if (aux.empty()){
+                break;
+            }
+            else{
+                curr_cyc = (aux[0] - x + tot_gain - 1) / tot_gain;
+                aux.pop_front();
+            }
+            int tot_end_gain = 2;
+            while (!aux.empty() && (aux[0] - x + tot_gain - 1) / tot_gain == curr_cyc){
+                tot_end_gain += 2;
+                aux.pop_front();
+            }
+            //if it ends early
+            if (x + tot_gain * (curr_cyc-1) + (tot_gain + n) / 2 >= y){
+                break;
+            }
+            //so you go through n * curr_cyc games and then you start winning more
+            tot_games += (n * curr_cyc);
+            x += (tot_gain * curr_cyc);
+            tot_gain += tot_end_gain;
         }
-        else{
-            one = (loc[s_tree.qry_HI(0, location-1, i)] > loc[s_tree.qry_LO(0, location-1, i)] ? 1 : 0);
+        //simulate last games
+        int curr_run = (tot_gain + n) / 2;
+        int rounds = (y - curr_run - x + tot_gain - 1) / tot_gain;
+        tot_games += n * rounds;
+        x += tot_gain * rounds;
+        for (int i = 0; i < n; i++){
+            if (x == y){
+                break;
+            }
+            tot_games++;
+            if (x >= opp[i]){
+                x++; tot_gain++;
+            }
+            else{
+                x--; tot_gain--;
+            }
         }
-        two = (loc[i-1] > location ? -1 : 0);
-        cout << one + two + curr_ans << "\n";
-        curr_ans += (one + two);
+        cout << tot_games << "\n";
     }
 }
+//you want to play opponents in order of increasing difficulty
+//when does the number of opponents you beat change?

@@ -29,13 +29,12 @@ int32_t main() {
         ofstream out("in.txt");
 
         {
-            int n = 5;
-            out << n << "\n";
-            vector<int> a(n);
-            iota(a.begin(), a.end(), 1);
-            shuffle(a.begin(), a.end(), g);
+            out << 1 << "\n";
+            int n = 5, x = rnd(1, 10);
+            int y = rnd(x+1, 20);
+            out << n << " " << x << " " << y << "\n";
             for (int i = 0; i < n; i++){
-                out << a[i] << " ";
+                out << rnd(1, 10) << " ";
             }
             out << "\n";
         }
