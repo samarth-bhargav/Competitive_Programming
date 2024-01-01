@@ -1,16 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int mxN = 100, INF = 1e9;
-array<int, 2> dp[mxN][mxN][mxN];
-int dp1[mxN][mxN];
-
-array<int, 2> max(array<int, 2> a, array<int, 2> b){
-    if (a[0] < b[0]) return b;
-    if (b[0] < a[0]) return a;
-    if (a[1] < b[1]) return a;
-    return b;
-}
+const int INF = 1e9;
 
 int main(){
     ios_base::sync_with_stdio(0);
@@ -21,73 +12,59 @@ int main(){
         int n; cin >> n;
         vector<int> a(n);
         for (int i = 0; i < n; i++){
-            cin >> a[i];
+            cin >> a[i]; a[i]--;
         }
+        vector<vector<bool>> removable(n, vector<bool>(n, 0));
         for (int i = 0; i < n; i++){
-            for (int j = 1; j <= n; j++){
-                for (int k = 1; k <= n; k++){
-                    dp[i][j][k] = {-INF, INF};
+            vector<int> occ(n, 0);
+            int res = i, count = 1;
+            occ[a[res]]++;
+            for (int j = i+1; j < n; j++){
+                occ[a[j]]++;
+                if (a[res] == a[j]){
+                    count++;
                 }
-                dp1[i][j] = INF;
+                else{
+                    count--;
+                }
+                if (count == 0){
+                    res = j;
+                    count = 1;
+                }
+                if (occ[a[res]] * 2 <= (j - i + 1) && ((j - i + 1) % 2 == 0)){
+                    removable[i][j] = true;
+                }
             }
         }
-        for (int j = 1; j <= n; j++){
-            dp[0][j][a[0]] = {0, 1};
+        vector<vector<int>> occ(n);
+        for (int i = 0; i < n; i++){
+            occ[a[i]].push_back(i);
         }
-        dp[0][a[0]][a[0]] = {1, 0};
-        dp1[0][a[0]] = 1;
-        for (int i = 1; i < n; i++){
-            dp[i][a[i]][a[i]] = max(dp[i][a[i]][a[i]], {dp[i-1][a[i]][a[i]][0]+1, dp[i-1][a[i]][a[i]][1]});
-            for (int j = 1; j <= n; j++){
-                dp[i][j][a[i]] = max(dp[i][j][a[i]], {dp[i-1][j][a[i]][0], dp[i-1][j][a[i]][1]+1});
-            }
-            dp1[i][a[i]] = min(dp1[i][a[i]], dp1[i-1][a[i]]+1);
-            unordered_set<int> min_len0;
-            for (int j = 1; j <= n; j++){
-                if (dp1[i][j] == 0){
-                    min_len0.insert(j);
+        int ans = 0;
+        for (int i = 0; i < n; i++){
+            vector<int> dp(n, -INF);
+            for (int j = 0; j < n; j++){
+                if (removable[0][j]){
+                    dp[j] = max(dp[j], 0);
                 }
-            }
-            if (min_len0.size() > 1 || min_len0.size() == 1 && *min_len0.begin() != a[i]){
-                dp[i][a[i]][a[i]] = max(dp[i][a[i]][a[i]], {1, 0});
-            }
-            for (int j = 1; j <= n; j++){
-                dp[i][j][a[i]] = max(dp[i][j][a[i]], {dp[i-1][j][j][0], 1});
-                for (int k = 1; k <= n; k++){
-                    if (k == a[i]) continue;
-                    dp[i][j][j] = max(dp[i][j][j], {dp[i-1][j][k][0], );
-                }
-            }
-            //update min dp
-            for (int j = 1; j <= n; j++){
-                if (dp1[i-1][j] <= n){
-                    if (dp1[i-1][j] == 0){
-                        if (dp[i-1][j][j] > 0){
-                            dp1[i][j] = min(dp1[i][j], 1);
-                        }
-                        else{
-                            dp1[i][j] = min(dp1[i][j], INF);
-                        }
+                if (a[j] == i){
+                    if (j == 0){
+                        dp[j] = max(dp[j], 1);
                     }
                     else{
-                        dp1[i][j] = min(dp1[i][j], dp1[i-1][j] - 1);
+                        dp[j] = max(dp[j], dp[j-1] + 1);
                     }
                 }
-                if (min_len0.size() > 1 || min_len0.size() == 1 && *min_len0.begin() != a[i]){
-                    dp1[i][j] = min(dp1[i][j], 1);
+                for (int k = 0; k < occ[i].size() && occ[i][k] < j; k++){
+                    if (removable[occ[i][k]][j] && occ[i][k] != 0){
+                        dp[j] = max(dp[j], dp[occ[i][k]-1]);
+                    }
+                    if (occ[i][k] != n-1 && removable[occ[i][k]+1][j]){
+                        dp[j] = max(dp[j], dp[occ[i][k]]);
+                    }
                 }
             }
-        }
-//        for (int i = 0; i < n; i++){
-//            for (int j = 1; j <= n; j++){
-//                for (int k = 1; k <= n; k++){
-//                    cout << "i: " << i << " j: " << j << " k: " << k << " dp[i][j][k]: " << dp[i][j][k] << "\n";
-//                }
-//            }
-//        }
-        int ans = 0;
-        for (int j = 1; j <= n; j++){
-            ans = max(ans, dp[n-1][j][j]);
+            ans = max(ans, dp.back());
         }
         cout << ans << "\n";
     }

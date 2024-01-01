@@ -1,80 +1,87 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int mxN = 1000;
-int g[mxN][mxN];
+struct dsu{
+    vector<int> p;
+    vector<vector<int>> cc;
+    int sz;
+    dsu(int n){
+        sz = n >> 1;
+        p.resize(n);
+        cc.resize(n);
+        iota(p.begin(), p.end(), 0);
+        for (int i = 0; i < n; i++){
+            cc[i] = {i};
+        }
+    }
+    int find(int x){
+        return p[x] == x ? x : p[x] = find(p[x]);
+    }
+    int conj(int x){
+        return x >= sz ? x - sz : x + sz;
+    }
+    bool join(int a, int b){
+        a = find(a); b = find(b);
+        if (a == b) return true;
+        if (cc[a].size() < cc[b].size()) swap(a,b);
+        for (int elem : cc[b]){
+            if (find(conj(elem)) == a){
+                return false;
+            }
+        }
+        for (int elem : cc[b]){
+            cc[a].push_back(elem);
+        }
+        cc[b].clear();
+        cc[b].shrink_to_fit();
+        p[b] = a;
+        return true;
+    }
+};
 
 int main(){
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    int t;
-    cin >> t;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t; cin >> t;
     while (t--){
-        int n;
-        cin >> n;
+        int n; cin >> n;
+        vector<vector<int>> a(n, vector<int>(n));
         for (int i = 0; i < n; i++){
             for (int j = 0; j < n; j++){
-                cin >> g[i][j];
+                cin >> a[i][j];
             }
         }
-        set<int> check;
-        stack<int> to_remove;
-        set<int> kswap;
-        map<pair<int,int>, int> mp;
-        for (int i = 1; i < n; i++){
-            check.insert(i);
-        }
-        int bound = 0;
-        while (bound != n && !check.empty()){
-            bool in_bound = kswap.find(bound) != kswap.end();
-            for (int x : check){
-                //g[bound][x] is the top, g[x][bound] is the left
-                int bound_t = bound, x_t = x;
-                if (bound > x){
-                    swap(bound_t, x_t);
-                }
-                if (g[bound_t][x_t] > g[x_t][bound_t]){
-                    to_remove.push(x);
-                    if (mp.find({x, bound}) != mp.end()){
-                        if (mp[{x, bound}] > x){
-                            kswap.erase(mp[{x, bound}]);
-                            kswap.insert()
-                        }
+        dsu d(2 * n);
+        bool works[n][n];
+        memset(works, 0, sizeof(works));
+        for (int i = 0; i < n; i++){
+            for (int j = i+1; j < n; j++){
+                if (a[i][j] < a[j][i]){
+                    if (d.join(i, j) && d.join(d.conj(i), d.conj(j))){
+                        works[i][j] = true;
                     }
                 }
-                else if (g[bound_t][x_t] < g[x_t][bound_t]){
-                    to_remove.push(x);
-                    if (mp.find({x, bound}) != mp.end()){
-                        if (mp[{x,bound}] > x){
-                            kswap.erase(mp[{x,bound}]);
-                            kswap.insert(x);
-                        }
-                    }
-                    else{
-                        mp[{bound, x}] = x;
-                        kswap.insert(x);
+                else if (a[i][j] > a[j][i]){
+                    if (d.join(i, d.conj(j)) && d.join(d.conj(i), j)){
+                        works[i][j] = true;
                     }
                 }
             }
-            while (!to_remove.empty()){
-                check.erase(to_remove.top());
-                to_remove.pop();
-            }
-            bound++;
         }
         for (int i = 0; i < n; i++){
             for (int j = i+1; j < n; j++){
-                bool one = kswap.find(i) != kswap.end();
-                bool two = kswap.find(j) != kswap.end();
-                if (one ^ two){
-                    swap(g[i][j], g[j][i]);
-                    cerr << i << " " << j << "\n";
+                if (works[i][j]){
+                    if (a[i][j] > a[j][i]) swap(a[i][j], a[j][i]);
+                }
+                else{
+                    if (a[i][j] < a[j][i]) swap(a[i][j], a[j][i]);
                 }
             }
         }
         for (int i = 0; i < n; i++){
             for (int j = 0; j < n; j++){
-                cout << g[i][j] << " ";
+                cout << a[i][j] << " ";
             }
             cout << "\n";
         }
