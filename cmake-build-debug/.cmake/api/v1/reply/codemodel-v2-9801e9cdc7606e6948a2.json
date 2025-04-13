@@ -1,0 +1,177 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.21"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Competitive_Programming",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Competitive_Programming::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Competitive_Programming-Debug-a3e0420f116d0c4546fe.json",
+					"name" : "Competitive_Programming",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "InHouse::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-InHouse-Debug-27ba445a2e1bddd12c2e.json",
+					"name" : "InHouse",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Informatics::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Informatics-Debug-aec2c94c3b0e0e7c3ead.json",
+					"name" : "Informatics",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "MHC::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-MHC-Debug-5df6d4c15c3cdb4f6e5e.json",
+					"name" : "MHC",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Template::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Template-Debug-e4b5c1d6ae36f2f289cb.json",
+					"name" : "Template",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "brute::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-brute-Debug-6c5741a67fdba93f4f5b.json",
+					"name" : "brute",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "extra::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-extra-Debug-58530cbc79c741d65337.json",
+					"name" : "extra",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "fun::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-fun-Debug-0239303947d3af954f91.json",
+					"name" : "fun",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "generate::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-generate-Debug-ce812c88c76fc795223c.json",
+					"name" : "generate",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "generator::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-generator-Debug-9c06fc105dc0f47ba091.json",
+					"name" : "generator",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "real::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-real-Debug-a9c49ac58cc384ca691b.json",
+					"name" : "real",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "stress_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-stress_test-Debug-45c4f1490a84aa33036c.json",
+					"name" : "stress_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "stress_tester::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-stress_tester-Debug-a024072d1dedc0e26354.json",
+					"name" : "stress_tester",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "testing::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-testing-Debug-0c3481376e0933365d53.json",
+					"name" : "testing",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/samar/Coding/Competitive_Programming/cmake-build-debug",
+		"source" : "C:/Users/samar/Coding/Competitive_Programming"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

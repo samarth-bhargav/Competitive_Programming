@@ -54,6 +54,9 @@ int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
+    ifstream cin("input.txt");
+    ofstream cout("output.txt");
+
     int t; cin >> t;
     for (int tt = 0; tt < t; tt++){
         cout << "Case #" << tt+1 << ": ";
@@ -67,7 +70,12 @@ int main() {
         int n = factors.size() + 41 - sum;
         cout << n << " ";
         for (int i = 0; i < n; i++){
-            cout << factors[i] << " ";
+            if (i < factors.size()){
+                cout << factors[i] << " ";
+            }
+            else{
+                cout << 1 << " ";
+            }
         }
         cout << "\n";
     }

@@ -15,6 +15,18 @@ string rnd_str(int len){
     return ret;
 }
 
+vector<array<int, 2>> gen_tree(int sz){
+    vector<int> p(sz+1);
+    for (int i = 2; i <= sz; i++){
+        p[i] = rnd(1, i-1);
+    }
+    vector<array<int, 2>> ret;
+    for (int i = 2; i <= sz; i++){
+        ret.push_back({i, p[i]});
+    }
+    return ret;
+}
+
 bool equal(string file1, string file2) {
     auto read_file = [&](string f) {
         vector<string> words;
@@ -36,12 +48,11 @@ int32_t main() {
         ofstream out("in.txt");
 
         {
-            //generate test cases here
             out << 1 << "\n";
-            int n = rnd(1, 10), k = rnd(0, 20);
-            out << n << " " << k << "\n";
+            int n = rnd(7, 7);
+            out << n << "\n";
             for (int i = 0; i < n; i++){
-                out << rnd(0, 10) << " " << rnd(0, 10) << "\n";
+                out << rnd(1, 5) << " " << rnd(1, 5) << "\n";
             }
         }
 
